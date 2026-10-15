@@ -69,7 +69,7 @@
 .nav-link { color:var(--foreground); font-size:13px; font-weight:500; display:flex; align-items:center; gap:5px; padding-block:12px; }
 .nav-link:hover,.nav-link.active { color:var(--primary); }
 .home-hero { position:relative; min-height:505px; background:var(--secondary); overflow:hidden; }
-.hero-photo { position:absolute; width:100%; height:100%; object-fit:cover; object-position:center 57%; }
+.hero-photo { position:absolute; width:100%; height:100%; object-fit:cover; object-position:center 38%; }
 .hero-wash { position:absolute; inset:0; background:linear-gradient(90deg,var(--secondary) 0%, color-mix(in oklch,var(--secondary) 94%,transparent) 23%, color-mix(in oklch,var(--secondary) 30%,transparent) 53%,transparent 69%); }
 .hero-content { position:relative; padding-top:67px; padding-bottom:65px; }
 .eyebrow { display:flex; align-items:center; gap:8px; font-size:11px; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:1.5px; }
@@ -99,7 +99,7 @@
 .chat-messages { overflow:auto; height:280px; padding:18px; display:flex; flex-direction:column; gap:12px; }
 .chat-bubble { max-width:90%; background:var(--secondary); padding:11px 13px; font-size:13px; line-height:1.65; border-radius:6px; }
 .chat-bubble.user { margin-left:auto; background:var(--primary); color:var(--primary-foreground); }
-@media (min-width:1500px) { .home-hero { min-height:550px; } .hero-photo { object-position:center 52%; } }
+@media (min-width:1500px) { .home-hero { min-height:550px; } .hero-photo { object-position:center 38%; } }
 @media (max-width:1023px) { .site-header { height:76px; } .quick-action { padding:20px 15px; gap:10px; } .hero-title { font-size:42px; } }
 @media (max-width:639px) {
   .container-page { width:calc(100% - 36px); }
@@ -122,7 +122,8 @@
   .page-banner { padding:32px 0; }
   .form-grid { grid-template-columns:1fr; }
   .service-panel { padding:20px; }
-  .chat-launcher { bottom:15px; right:15px; }
+  .chat-launcher { bottom:15px; right:15px; width:48px; padding:0; }
+  .chat-launcher span { display:none; }
   .chat-panel { width:calc(100% - 30px); right:15px; bottom:80px; }
 }
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; } }
