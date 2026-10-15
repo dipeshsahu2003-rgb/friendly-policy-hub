@@ -2,7 +2,7 @@
 
 Create a modern, professional insurance website named DAS Insurance, using Bajaj Allianz General Insurance as a reference for its layout, features, and customer experience.
 
-AI Assistant Name: SAD
+AI Assistant Name: VASKO
 
 Design requirements:
 
@@ -14,7 +14,7 @@ Health, Life, and travel insurance sections.
 
 Insurance policy information and claim assistance.
 
-AI chatbot named SAD for customer queries.
+AI chatbot named VASKO for customer queries.
 
 Complaint registration and complaint tracking.
 
@@ -24,7 +24,7 @@ Responsive design for mobile and desktop.
 
 Make the UI attractive, user-friendly, and similar in functionality to a leading Indian insurance website.
 
-Use React, Tailwind CSS, and modern UI components. Make buttons, forms, and the SAD chatbot interactive. Start with mock data.
+Use React, Tailwind CSS, and modern UI components. Make buttons, forms, and the VASKO chatbot interactive. Start with mock data.
 
 Use original branding and assets. Do not copy Bajaj Allianz's logo or exact website design. Clearly identify DAS Insurance as a demo project, not an official insurance provider.
 

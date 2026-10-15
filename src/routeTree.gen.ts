@@ -18,6 +18,7 @@ import { Route as InsuranceRouteImport } from './routes/insurance'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as InsuranceIndexRouteImport } from './routes/insurance.index'
 import { Route as InsuranceTypeRouteImport } from './routes/insurance.$type'
+import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -64,6 +65,11 @@ const InsuranceTypeRoute = InsuranceTypeRouteImport.update({
   path: '/$type',
   getParentRoute: () => InsuranceRoute,
 } as any)
+const ResourcesSlugRoute = ResourcesSlugRouteImport.update({
+  id: '/resources/$slug',
+  path: '/resources/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -74,6 +80,7 @@ export interface FileRoutesByFullPath {
   '/insurance': typeof InsuranceRouteWithChildren
   '/support': typeof SupportRoute
   '/insurance/$type': typeof InsuranceTypeRoute
+  '/resources/$slug': typeof ResourcesSlugRoute
   '/insurance/': typeof InsuranceIndexRoute
 }
 export interface FileRoutesByTo {
@@ -84,6 +91,7 @@ export interface FileRoutesByTo {
   '/faq': typeof FaqRoute
   '/support': typeof SupportRoute
   '/insurance/$type': typeof InsuranceTypeRoute
+  '/resources/$slug': typeof ResourcesSlugRoute
   '/insurance': typeof InsuranceIndexRoute
 }
 export interface FileRoutesById {
@@ -96,6 +104,7 @@ export interface FileRoutesById {
   '/insurance': typeof InsuranceRouteWithChildren
   '/support': typeof SupportRoute
   '/insurance/$type': typeof InsuranceTypeRoute
+  '/resources/$slug': typeof ResourcesSlugRoute
   '/insurance/': typeof InsuranceIndexRoute
 }
 export interface FileRouteTypes {
@@ -109,6 +118,7 @@ export interface FileRouteTypes {
     | '/insurance'
     | '/support'
     | '/insurance/$type'
+    | '/resources/$slug'
     | '/insurance/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -119,6 +129,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/support'
     | '/insurance/$type'
+    | '/resources/$slug'
     | '/insurance'
   id:
     | '__root__'
@@ -130,6 +141,7 @@ export interface FileRouteTypes {
     | '/insurance'
     | '/support'
     | '/insurance/$type'
+    | '/resources/$slug'
     | '/insurance/'
   fileRoutesById: FileRoutesById
 }
@@ -141,6 +153,7 @@ export interface RootRouteChildren {
   FaqRoute: typeof FaqRoute
   InsuranceRoute: typeof InsuranceRouteWithChildren
   SupportRoute: typeof SupportRoute
+  ResourcesSlugRoute: typeof ResourcesSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -208,6 +221,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InsuranceTypeRouteImport
       parentRoute: typeof InsuranceRoute
     }
+    '/resources/$slug': {
+      id: '/resources/$slug'
+      path: '/resources/$slug'
+      fullPath: '/resources/$slug'
+      preLoaderRoute: typeof ResourcesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -233,6 +253,7 @@ const rootRouteChildren: RootRouteChildren = {
   FaqRoute: FaqRoute,
   InsuranceRoute: InsuranceRouteWithChildren,
   SupportRoute: SupportRoute,
+  ResourcesSlugRoute: ResourcesSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

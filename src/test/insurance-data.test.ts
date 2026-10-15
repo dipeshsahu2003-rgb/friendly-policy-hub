@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { getSadReply } from '@/lib/insurance-data';
-describe('SAD query routing',()=>{
- it('does not treat hi embedded in a word as a greeting',()=>{expect(getSadReply('something unrelated')).toBe(getSadReply('unrecognised question'));expect(getSadReply('something unrelated')).not.toBe(getSadReply('hi'));});
- it('routes complaint queries before generic policy queries',()=>{expect(getSadReply('complaint about my policy')).toBe(getSadReply('complaint'));expect(getSadReply('complaint about my policy')).not.toBe(getSadReply('policy'));});
+import { getVaskoReply } from '@/lib/insurance-data';
+describe('VASKO query routing',()=>{
+ it('does not treat hi embedded in a word as a greeting',()=>{expect(getVaskoReply('something unrelated')).toBe(getVaskoReply('unrecognised question'));expect(getVaskoReply('something unrelated')).not.toBe(getVaskoReply('hi'));expect(getVaskoReply('hi')).toContain('VASKO');});
+ it('routes complaint queries before generic policy queries',()=>{expect(getVaskoReply('complaint about my policy')).toBe(getVaskoReply('complaint'));expect(getVaskoReply('complaint about my policy')).not.toBe(getVaskoReply('policy'));});
 });
