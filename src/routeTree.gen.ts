@@ -10,33 +10,60 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as InsuranceRouteImport } from './routes/insurance'
+import { Route as InsuranceIndexRouteImport } from './routes/insurance.index'
+import { Route as InsuranceTypeRouteImport } from './routes/insurance.$type'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InsuranceRoute = InsuranceRouteImport.update({
+  id: '/insurance',
+  path: '/insurance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsuranceIndexRoute = InsuranceIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => InsuranceRoute,
+} as any)
+const InsuranceTypeRoute = InsuranceTypeRouteImport.update({
+  id: '/$type',
+  path: '/$type',
+  getParentRoute: () => InsuranceRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/insurance': typeof InsuranceRouteWithChildren
+  '/insurance/$type': typeof InsuranceTypeRoute
+  '/insurance/': typeof InsuranceIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/insurance/$type': typeof InsuranceTypeRoute
+  '/insurance': typeof InsuranceIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/insurance': typeof InsuranceRouteWithChildren
+  '/insurance/$type': typeof InsuranceTypeRoute
+  '/insurance/': typeof InsuranceIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/insurance' | '/insurance/$type' | '/insurance/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/insurance/$type' | '/insurance'
+  id: '__root__' | '/' | '/insurance' | '/insurance/$type' | '/insurance/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  InsuranceRoute: typeof InsuranceRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +75,47 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/insurance': {
+      id: '/insurance'
+      path: '/insurance'
+      fullPath: '/insurance'
+      preLoaderRoute: typeof InsuranceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insurance/': {
+      id: '/insurance/'
+      path: '/'
+      fullPath: '/insurance/'
+      preLoaderRoute: typeof InsuranceIndexRouteImport
+      parentRoute: typeof InsuranceRoute
+    }
+    '/insurance/$type': {
+      id: '/insurance/$type'
+      path: '/$type'
+      fullPath: '/insurance/$type'
+      preLoaderRoute: typeof InsuranceTypeRouteImport
+      parentRoute: typeof InsuranceRoute
+    }
   }
 }
 
+interface InsuranceRouteChildren {
+  InsuranceTypeRoute: typeof InsuranceTypeRoute
+  InsuranceIndexRoute: typeof InsuranceIndexRoute
+}
+
+const InsuranceRouteChildren: InsuranceRouteChildren = {
+  InsuranceTypeRoute: InsuranceTypeRoute,
+  InsuranceIndexRoute: InsuranceIndexRoute,
+}
+
+const InsuranceRouteWithChildren = InsuranceRoute._addFileChildren(
+  InsuranceRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  InsuranceRoute: InsuranceRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
