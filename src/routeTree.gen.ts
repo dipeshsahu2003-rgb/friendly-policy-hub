@@ -10,33 +10,137 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ClaimsRouteImport } from './routes/claims'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as InsuranceRouteImport } from './routes/insurance'
+import { Route as SupportRouteImport } from './routes/support'
+import { Route as InsuranceIndexRouteImport } from './routes/insurance.index'
+import { Route as InsuranceTypeRouteImport } from './routes/insurance.$type'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClaimsRoute = ClaimsRouteImport.update({
+  id: '/claims',
+  path: '/claims',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsuranceRoute = InsuranceRouteImport.update({
+  id: '/insurance',
+  path: '/insurance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupportRoute = SupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsuranceIndexRoute = InsuranceIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => InsuranceRoute,
+} as any)
+const InsuranceTypeRoute = InsuranceTypeRouteImport.update({
+  id: '/$type',
+  path: '/$type',
+  getParentRoute: () => InsuranceRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/claims': typeof ClaimsRoute
+  '/dashboard': typeof DashboardRoute
+  '/faq': typeof FaqRoute
+  '/insurance': typeof InsuranceRouteWithChildren
+  '/support': typeof SupportRoute
+  '/insurance/$type': typeof InsuranceTypeRoute
+  '/insurance/': typeof InsuranceIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/claims': typeof ClaimsRoute
+  '/dashboard': typeof DashboardRoute
+  '/faq': typeof FaqRoute
+  '/support': typeof SupportRoute
+  '/insurance/$type': typeof InsuranceTypeRoute
+  '/insurance': typeof InsuranceIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/claims': typeof ClaimsRoute
+  '/dashboard': typeof DashboardRoute
+  '/faq': typeof FaqRoute
+  '/insurance': typeof InsuranceRouteWithChildren
+  '/support': typeof SupportRoute
+  '/insurance/$type': typeof InsuranceTypeRoute
+  '/insurance/': typeof InsuranceIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/claims'
+    | '/dashboard'
+    | '/faq'
+    | '/insurance'
+    | '/support'
+    | '/insurance/$type'
+    | '/insurance/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/claims'
+    | '/dashboard'
+    | '/faq'
+    | '/support'
+    | '/insurance/$type'
+    | '/insurance'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/claims'
+    | '/dashboard'
+    | '/faq'
+    | '/insurance'
+    | '/support'
+    | '/insurance/$type'
+    | '/insurance/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ClaimsRoute: typeof ClaimsRoute
+  DashboardRoute: typeof DashboardRoute
+  FaqRoute: typeof FaqRoute
+  InsuranceRoute: typeof InsuranceRouteWithChildren
+  SupportRoute: typeof SupportRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +152,87 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/claims': {
+      id: '/claims'
+      path: '/claims'
+      fullPath: '/claims'
+      preLoaderRoute: typeof ClaimsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insurance': {
+      id: '/insurance'
+      path: '/insurance'
+      fullPath: '/insurance'
+      preLoaderRoute: typeof InsuranceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/support': {
+      id: '/support'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof SupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insurance/': {
+      id: '/insurance/'
+      path: '/'
+      fullPath: '/insurance/'
+      preLoaderRoute: typeof InsuranceIndexRouteImport
+      parentRoute: typeof InsuranceRoute
+    }
+    '/insurance/$type': {
+      id: '/insurance/$type'
+      path: '/$type'
+      fullPath: '/insurance/$type'
+      preLoaderRoute: typeof InsuranceTypeRouteImport
+      parentRoute: typeof InsuranceRoute
+    }
   }
 }
 
+interface InsuranceRouteChildren {
+  InsuranceTypeRoute: typeof InsuranceTypeRoute
+  InsuranceIndexRoute: typeof InsuranceIndexRoute
+}
+
+const InsuranceRouteChildren: InsuranceRouteChildren = {
+  InsuranceTypeRoute: InsuranceTypeRoute,
+  InsuranceIndexRoute: InsuranceIndexRoute,
+}
+
+const InsuranceRouteWithChildren = InsuranceRoute._addFileChildren(
+  InsuranceRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ClaimsRoute: ClaimsRoute,
+  DashboardRoute: DashboardRoute,
+  FaqRoute: FaqRoute,
+  InsuranceRoute: InsuranceRouteWithChildren,
+  SupportRoute: SupportRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
