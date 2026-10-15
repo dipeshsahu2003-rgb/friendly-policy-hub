@@ -16,7 +16,7 @@ export function getSadReply(query: string): string {
  if (/life|term/.test(q)) return 'Our sample Life plan offers ₹1 crore term cover from an illustrative ₹599 per month. It supports flexible payments and optional critical illness cover. It is not an actual insurance offer.';
  if (/health|hospital|medical/.test(q)) return 'Our sample Health plan includes cashless hospitalisation and pre/post-hospitalisation cover, with illustrative ₹10 lakh coverage from ₹499 per month. Pre-existing conditions have a sample 36-month waiting period.';
  if (/renew|policy|download/.test(q)) return 'Your customer dashboard contains sample policies, renewal actions and downloadable demo policy summaries. No real payment or policy issuance takes place.';
- if (/hi|hello|hey/.test(q)) return 'Hello! I’m SAD. I can help with sample health, life and travel plans, claims, policy details and complaints. What would you like to know?';
+ if (/\b(hi|hello|hey)\b/.test(q)) return 'Hello! I’m SAD. I can help with sample health, life and travel plans, claims, policy details and complaints. What would you like to know?';
  return 'I can help with insurance plans, claims, complaints and sample policies. Try asking “How do I file a claim?” or “What does health insurance cover?” I’m a simulated assistant, not a licensed insurance adviser.';
 }
 export const faqs = [
